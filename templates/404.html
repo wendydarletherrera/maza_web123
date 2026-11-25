@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block titulo %}Página no encontrada{% endblock %}
+{% block contenido %}
+<section class="banda banda--alta">
+  <div class="contenedor">
+    <p class="etiqueta">Error 404</p>
+    <h1 class="banda__titulo">Esta pieza no está en nuestro stock</h1>
+    <p class="banda__texto">La página que buscas no existe. Vuelve al inicio o revisa el catálogo.</p>
+    <div class="hero__acciones">
+      <a href="{{ url_for('inicio') }}" class="boton boton--rojo">Ir al inicio</a>
+      <a href="{{ url_for('catalogo') }}" class="boton boton--contorno">Ver catálogo</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

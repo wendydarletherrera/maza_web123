@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block titulo %}Contacto{% endblock %}
+{% block contenido %}
+<section class="banda">
+  <div class="contenedor">
+    <p class="etiqueta">Contacto</p>
+    <h1 class="banda__titulo">Cotiza tu repuesto en minutos</h1>
+    <p class="banda__texto">Completa el formulario y se abrirá WhatsApp con tu consulta lista para enviar.</p>
+  </div>
+</section>
+
+<section class="seccion seccion--compacta">
+  <div class="contenedor contacto">
+    <form class="formulario" method="post" action="{{ url_for('contacto') }}" target="_blank">
+      <h2 class="titulo titulo--chico">Solicitar cotización</h2>
+      <div class="campo">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" type="text" required autocomplete="name">
+      </div>
+      <div class="campo-fila">
+        <div class="campo">
+          <label for="tipo">Soy</label>
+          <select id="tipo" name="tipo">
+            <option>Dueño de un vehículo</option>
+            <option>Tienda de repuestos</option>
+            <option>Taller mecánico</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="ciudad">Ciudad</label>
+          <select id="ciudad" name="ciudad">
+            {% for s in empresa.sucursales %}<option>{{ s.ciudad }}</option>{% endfor %}
+            <option>Otra ciudad</option>
+          </select>
+        </div>
+      </div>
+      <div class="campo">
+        <label for="vehiculo">Marca, modelo y año del vehículo</label>
+        <input id="vehiculo" name="vehiculo" type="text" placeholder="Ej.: Changan CS35 2019">
+      </div>
+      <div class="campo">
+        <label for="repuesto">Repuesto o código</label>
+        <textarea id="repuesto" name="repuesto" rows="3" required placeholder="Ej.: bobina de encendido F01R00A071"></textarea>
+      </div>
+      <button type="submit" class="boton boton--rojo boton--ancho">{{ icono('whatsapp', 22) }} Enviar por WhatsApp</button>
+    </form>
+
+    <div class="contacto__info">
+      {% for s in empresa.sucursales %}
+      <article class="sucursal sucursal--borde">
+        <span class="sucursal__icono">{{ icono('ubicacion', 30) }}</span>
+        <div>
+          <h3>{{ s.ciudad }}</h3>
+          <p>{{ s.direccion }}</p>
+          <a href="{{ s.mapa }}" class="enlace-flecha" target="_blank" rel="noopener">Ver en el mapa {{ icono('flecha', 16) }}</a>
+        </div>
+      </article>
+      {% endfor %}
+      <article class="sucursal sucursal--negra">
+        <span class="sucursal__icono">{{ icono('telefono', 30) }}</span>
+        <div>
+          <h3>Teléfonos y WhatsApp</h3>
+          <p>{% for t in empresa.telefonos %}<a href="tel:+591{{ t }}">{{ t }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>
+          <p class="texto--chico">Síguenos en {% for red, url in empresa.redes.items() %}<a href="{{ url }}" target="_blank" rel="noopener">{{ red }}</a>{% if not loop.last %} y {% endif %}{% endfor %}</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+{% endblock %}

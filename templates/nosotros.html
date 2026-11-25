@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block titulo %}Nosotros{% endblock %}
+{% block contenido %}
+<section class="banda">
+  <div class="contenedor">
+    <p class="etiqueta">Nosotros</p>
+    <h1 class="banda__titulo">{{ empresa.anios }} años abasteciendo al mercado automotriz boliviano</h1>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenedor dos-columnas">
+    <div>
+      <p class="etiqueta etiqueta--roja">Nuestra historia</p>
+      <h2 class="titulo">Un aliado para negocios, talleres y conductores</h2>
+    </div>
+    <div class="texto">
+      <p>Auto Repuestos MAZA cuenta con una trayectoria de {{ empresa.anios }} años en el mercado automotriz boliviano, consolidándose como un aliado estratégico en la comercialización y distribución de repuestos para vehículos de marcas japonesas, coreanas y chinas.</p>
+      <p>A lo largo de este tiempo hemos fortalecido nuestra presencia con una sólida red de venta al por mayor, que abastece a negocios locales y talleres mecánicos, y con una atención directa al detalle orientada a brindar soluciones rápidas e integrales a nuestros clientes.</p>
+      <p>Hoy atendemos desde nuestra matriz en Santa Cruz y nuestra tienda en el centro comercial Supermall de Cochabamba, y desarrollamos nuestra propia marca de autopartes MAZA.</p>
+    </div>
+  </div>
+</section>
+
+<section class="seccion seccion--negra">
+  <div class="contenedor grid-2">
+    <article class="mv">
+      <p class="etiqueta">Misión</p>
+      <p class="mv__texto">Brindar soluciones confiables en repuestos automotrices, ofreciendo productos de calidad, precios competitivos y una atención rápida y personalizada, ayudando a nuestros clientes a mantener sus vehículos en óptimas condiciones.</p>
+    </article>
+    <article class="mv">
+      <p class="etiqueta">Visión</p>
+      <p class="mv__texto">Ser una de las distribuidoras de autorepuestos más reconocidas y confiables de Bolivia, destacándonos por la variedad de productos, la calidad del servicio, la innovación y la satisfacción de nuestros clientes.</p>
+    </article>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenedor">
+    <div class="encabezado">
+      <p class="etiqueta etiqueta--roja">Nuestro equipo</p>
+      <h2 class="titulo">Personas que conocen el repuesto que necesitas</h2>
+    </div>
+    <div class="equipo">
+      <article class="equipo__cabeza">
+        <h3>Gerente general</h3>
+        <p class="equipo__nombre">{{ empresa.gerente }}</p>
+        <p>Dirige la empresa, toma las decisiones estratégicas y supervisa todas las áreas.</p>
+      </article>
+      <div class="grid-3">
+        <article class="tarjeta tarjeta--borde"><h3>Administración</h3><p>Actividades administrativas, gestiones, documentación, compras y organización interna.</p></article>
+        <article class="tarjeta tarjeta--borde"><h3>Gerencia de ventas</h3><p>Dirige el área comercial, establece metas de ventas y supervisa al equipo.</p></article>
+        <article class="tarjeta tarjeta--borde"><h3>Contabilidad</h3><p>Lleva la contabilidad, registra ingresos y egresos y controla impuestos y estados financieros.</p></article>
+        <article class="tarjeta tarjeta--borde"><h3>Ejecutivos de ventas</h3><p>Atienden a los clientes, realizan cotizaciones y ventas, y promocionan los productos.</p></article>
+        <article class="tarjeta tarjeta--borde"><h3>Despacho</h3><p>Prepara los pedidos, controla la entrega de productos y apoya el control físico del inventario.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+{% include "_cta.html" %}
+{% endblock %}

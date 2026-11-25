@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block titulo %}Productos{% endblock %}
+{% block contenido %}
+<section class="banda">
+  <img src="{{ url_for('static', filename='img/bobina-196.png') }}" alt="" class="banda__repuesto" aria-hidden="true">
+  <div class="contenedor">
+    <p class="etiqueta">Catálogo 2026</p>
+    <h1 class="banda__titulo">Piezas destacadas</h1>
+    <p class="banda__texto">Una muestra de nuestro catálogo. Si buscas otro código o modelo, escríbenos y te confirmamos la pieza exacta.</p>
+  </div>
+</section>
+
+<section class="seccion seccion--compacta" id="bobinas">
+  <div class="contenedor">
+    <div class="encabezado encabezado--fila">
+      <div>
+        <p class="etiqueta etiqueta--roja">Línea destacada</p>
+        <h2 class="titulo">Bobinas de encendido</h2>
+      </div>
+      <a href="{{ wa('Hola MAZA, busco una bobina de encendido para mi vehículo.') }}" class="enlace-flecha" target="_blank" rel="noopener">Buscar otra bobina {{ icono('flecha', 18) }}</a>
+    </div>
+    <div class="grid-4">
+      {% for p in destacados %}{% include "_pieza.html" %}{% endfor %}
+    </div>
+    <p class="nota">Imágenes referenciales. Confirma siempre la compatibilidad con un asesor antes de comprar.</p>
+  </div>
+</section>
+
+<section class="seccion seccion--gris">
+  <div class="contenedor">
+    <div class="encabezado">
+      <p class="etiqueta etiqueta--roja">Más líneas</p>
+      <h2 class="titulo">También tenemos</h2>
+    </div>
+    <div class="grid-3">
+      {% for c in categorias if not c.en_linea %}
+      <article class="categoria" id="{{ c.slug }}">
+        <span class="categoria__icono">{{ icono(c.icono, 44) }}</span>
+        <h3>{{ c.nombre }}</h3>
+        <p>{{ c.desc }}</p>
+        <a href="{{ wa('Hola MAZA, quiero consultar disponibilidad de ' ~ c.nombre|lower ~ '.') }}" class="enlace-flecha" target="_blank" rel="noopener">Consultar disponibilidad {{ icono('flecha', 16) }}</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% include "_cta.html" %}
+{% endblock %}

@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% block titulo %}Inicio{% endblock %}
+{% block contenido %}
+<section class="hero">
+  <div class="hero__fondo" aria-hidden="true">
+    <div class="hero__brillo"></div>
+    <img src="{{ url_for('static', filename='img/bobina-187.png') }}" alt="" class="hero__repuesto">
+  </div>
+  <div class="contenedor hero__grid">
+    <div class="hero__texto">
+      <p class="etiqueta">Importadora y distribuidora · Cochabamba y Santa Cruz</p>
+      <h1 class="hero__titulo">La pieza exacta para tu auto <span>japonés, coreano o chino</span></h1>
+      <p class="hero__bajada">Repuestos de calidad, stock disponible todo el año y asesoría para encontrar la pieza compatible con tu vehículo. Atendemos al por mayor y al detalle.</p>
+      <div class="hero__acciones">
+        <a href="{{ wa('Hola MAZA, quiero cotizar un repuesto.') }}" class="boton boton--rojo" target="_blank" rel="noopener">{{ icono('whatsapp', 22) }} Cotizar por WhatsApp</a>
+        <a href="{{ url_for('catalogo') }}" class="boton boton--contorno">Ver catálogo {{ icono('flecha', 20) }}</a>
+      </div>
+    </div>
+  </div>
+  <div class="contenedor">
+    <ul class="cifras">
+      <li><strong>{{ empresa.anios }} años</strong><span>en el mercado boliviano</span></li>
+      <li><strong>2 ciudades</strong><span>Cochabamba y Santa Cruz</span></li>
+      <li><strong>Mayor y detalle</strong><span>tiendas, talleres y particulares</span></li>
+      <li><strong>Catálogo 2026</strong><span>ordenado por marca de vehículo</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenedor">
+    <div class="encabezado">
+      <p class="etiqueta etiqueta--roja">Por qué MAZA</p>
+      <h2 class="titulo">Lo que nos piden nuestros clientes, en un solo lugar</h2>
+    </div>
+    <div class="grid-4">
+      <article class="tarjeta">
+        <span class="tarjeta__icono">{{ icono('calidad') }}</span>
+        <h3>Calidad que se nota</h3>
+        <p>Repuestos seleccionados para que la pieza funcione y dure, con nuestra marca propia MAZA en filtros de aire.</p>
+      </article>
+      <article class="tarjeta">
+        <span class="tarjeta__icono">{{ icono('stock') }}</span>
+        <h3>Stock todo el año</h3>
+        <p>Trabajamos para tener disponibles las piezas de mayor rotación cuando tu negocio o tu vehículo las necesita.</p>
+      </article>
+      <article class="tarjeta">
+        <span class="tarjeta__icono">{{ icono('asesoria') }}</span>
+        <h3>Asesoría técnica</h3>
+        <p>Te ayudamos a encontrar la pieza compatible con el código o el modelo de tu vehículo antes de comprar.</p>
+      </article>
+      <article class="tarjeta">
+        <span class="tarjeta__icono">{{ icono('precio') }}</span>
+        <h3>Precio competitivo</h3>
+        <p>Precios de importador para el consumidor y cotizaciones para compras por volumen.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="seccion seccion--gris">
+  <div class="contenedor">
+    <div class="encabezado encabezado--fila">
+      <div>
+        <p class="etiqueta etiqueta--roja">Piezas destacadas</p>
+        <h2 class="titulo">Bobinas de encendido</h2>
+      </div>
+      <a href="{{ url_for('catalogo') }}" class="enlace-flecha">Ver más piezas {{ icono('flecha', 18) }}</a>
+    </div>
+    <div class="grid-4">
+      {% for p in destacados %}{% include "_pieza.html" %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="categorias">
+  <div class="contenedor">
+    <div class="encabezado encabezado--fila">
+      <div>
+        <p class="etiqueta etiqueta--roja">Productos</p>
+        <h2 class="titulo">Nuestras líneas de repuestos</h2>
+      </div>
+      <a href="{{ url_for('catalogo') }}" class="enlace-flecha">Ver catálogo completo {{ icono('flecha', 18) }}</a>
+    </div>
+    <div class="grid-3">
+      {% for c in categorias %}
+      <article class="categoria">
+        <span class="categoria__icono">{{ icono(c.icono, 44) }}</span>
+        <h3>{{ c.nombre }}</h3>
+        <p>{{ c.desc }}</p>
+        {% if c.en_linea %}
+        <a href="{{ url_for('catalogo') }}" class="enlace-flecha">Ver piezas destacadas {{ icono('flecha', 16) }}</a>
+        {% else %}
+        <a href="{{ wa('Hola MAZA, quiero consultar disponibilidad de ' ~ c.nombre|lower ~ '.') }}" class="enlace-flecha" target="_blank" rel="noopener">Consultar disponibilidad {{ icono('flecha', 16) }}</a>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="seccion seccion--gris">
+  <div class="contenedor marcas">
+    <div>
+      <p class="etiqueta etiqueta--roja">Especialistas</p>
+      <h2 class="titulo">Repuestos para las marcas que más circulan en Bolivia</h2>
+      <p class="texto">Nos especializamos en vehículos japoneses, coreanos y chinos. Si no ves tu marca, escríbenos con el código o el modelo y te confirmamos la compatibilidad.</p>
+    </div>
+    <ul class="chips">
+      {% for m in ['Mitsubishi','Suzuki','SsangYong','Changan','Chery','Great Wall','Haval','JAC','BYD','Geely','DFSK','Lifan','Foton','Zotye','Dongfeng','BAIC'] %}
+      <li>{{ m }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="seccion seccion--negra">
+  <div class="contenedor">
+    <div class="encabezado">
+      <p class="etiqueta">A quién atendemos</p>
+      <h2 class="titulo titulo--blanco">Un proveedor para cada tipo de cliente</h2>
+    </div>
+    <div class="grid-3">
+      <article class="perfil">
+        <span class="perfil__icono">{{ icono('tienda', 40) }}</span>
+        <h3>Tiendas de repuestos</h3>
+        <p>Venta al por mayor, cotización por volumen y lista de stock y precios por WhatsApp para reponer tu tienda sin perder ventas.</p>
+        <a href="{{ wa('Hola MAZA, tengo una tienda de repuestos y quiero cotizar por mayor.') }}" class="enlace-flecha enlace-flecha--blanco" target="_blank" rel="noopener">Cotizar por mayor {{ icono('flecha', 16) }}</a>
+      </article>
+      <article class="perfil">
+        <span class="perfil__icono">{{ icono('taller', 40) }}</span>
+        <h3>Talleres mecánicos</h3>
+        <p>Piezas compatibles y asesoría técnica para que el trabajo salga bien a la primera y tu cliente vuelva.</p>
+        <a href="{{ wa('Hola MAZA, tengo un taller mecánico y quiero cotizar repuestos.') }}" class="enlace-flecha enlace-flecha--blanco" target="_blank" rel="noopener">Hablar con un asesor {{ icono('flecha', 16) }}</a>
+      </article>
+      <article class="perfil">
+        <span class="perfil__icono">{{ icono('auto', 40) }}</span>
+        <h3>Dueños de vehículos</h3>
+        <p>Atención directa en nuestra tienda del Supermall o por WhatsApp. Envíanos el modelo de tu auto y te decimos qué pieza necesitas.</p>
+        <a href="{{ wa('Hola MAZA, quiero un repuesto para mi vehículo.') }}" class="enlace-flecha enlace-flecha--blanco" target="_blank" rel="noopener">Consultar mi repuesto {{ icono('flecha', 16) }}</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenedor">
+    <div class="encabezado">
+      <p class="etiqueta etiqueta--roja">Cómo comprar</p>
+      <h2 class="titulo">Tu repuesto en tres pasos</h2>
+    </div>
+    <ol class="pasos">
+      <li><span class="pasos__numero">1</span><h3>Busca o envía tu código</h3><p>Encuéntralo en el catálogo o mándanos el código, la marca y el modelo de tu vehículo.</p></li>
+      <li><span class="pasos__numero">2</span><h3>Recibe tu cotización</h3><p>Te confirmamos la compatibilidad, el precio y la disponibilidad por WhatsApp.</p></li>
+      <li><span class="pasos__numero">3</span><h3>Recoge o recibe</h3><p>Pasa por nuestra tienda en Cochabamba o Santa Cruz, o coordina la entrega con nosotros.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="seccion seccion--gris">
+  <div class="contenedor">
+    <div class="encabezado">
+      <p class="etiqueta etiqueta--roja">Visítanos</p>
+      <h2 class="titulo">Nuestras sucursales</h2>
+    </div>
+    <div class="grid-2">
+      {% for s in empresa.sucursales %}
+      <article class="sucursal">
+        <span class="sucursal__icono">{{ icono('ubicacion', 32) }}</span>
+        <div>
+          <h3>{{ s.ciudad }}</h3>
+          <p>{{ s.direccion }}</p>
+          <a href="{{ s.mapa }}" class="enlace-flecha" target="_blank" rel="noopener">Cómo llegar {{ icono('flecha', 16) }}</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "_cta.html" %}
+{% endblock %}

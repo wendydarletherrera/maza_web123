@@ -1,0 +1,58 @@
+[
+ {
+  "codigo": "F01R00A093",
+  "vehiculos": "CHERY A3, TIGGO Y ARRIZO",
+  "categoria": "Bobinas de encendido",
+  "pines": "2 Pines",
+  "imagen": "bobina-196.png"
+ },
+ {
+  "codigo": "F01R00A071",
+  "vehiculos": "CHANGAN CS35/CS75/EADO",
+  "categoria": "Bobinas de encendido",
+  "pines": "3 Pines",
+  "imagen": "bobina-187.png"
+ },
+ {
+  "codigo": "F01R00A095",
+  "vehiculos": "HAVAL H6 2013- UP, H4 GREAT WALL HOVER H6 1.5L, 2012GW4G15F 1.5L",
+  "categoria": "Bobinas de encendido",
+  "pines": "3 Pines",
+  "imagen": "bobina-205.png"
+ },
+ {
+  "codigo": "F01R00A099 / F01R00A066",
+  "vehiculos": "JAC REFINE M4/M5/M6/S7/ J5/ J7",
+  "categoria": "Bobinas de encendido",
+  "pines": "3 Pines",
+  "imagen": "bobina-218.png"
+ },
+ {
+  "codigo": "473QE-3705100A",
+  "vehiculos": "BYD F3R, L3, G3 (GASOLINA)",
+  "categoria": "Bobinas de encendido",
+  "pines": "3 Pines",
+  "imagen": "bobina-196.png"
+ },
+ {
+  "codigo": "F01R00A128 / F01R00A034",
+  "vehiculos": "GEELY GX3, NEW GX3, G5 SUV BAIC M50, GC6 SC5 VISION",
+  "categoria": "Bobinas de encendido",
+  "pines": "3 Pines",
+  "imagen": "bobina-187.png"
+ },
+ {
+  "codigo": "3705010-NE01",
+  "vehiculos": "CHANGAN CS55, CS35 PLUS MODERNO, CHANGAN UNI-K UNI-T UNI-V CS75 CS85, HUNTER EXPLORER F70",
+  "categoria": "Bobinas de encendido",
+  "pines": "4 Pines",
+  "imagen": "bobina-205.png"
+ },
+ {
+  "codigo": "96253555",
+  "vehiculos": "SUZUKI FORENZA",
+  "categoria": "Bobinas de encendido",
+  "pines": "3 Pines",
+  "imagen": "bobina-218.png"
+ }
+]

@@ -1,0 +1,12 @@
+<article class="pieza">
+  <div class="pieza__foto">
+    <img src="{{ url_for('static', filename='img/' ~ p.imagen) }}" alt="Bobina de encendido {{ p.codigo }}" loading="lazy">
+    <span class="pieza__pines">{{ p.pines }}</span>
+  </div>
+  <div class="pieza__cuerpo">
+    <p class="pieza__categoria">{{ p.categoria }}</p>
+    <h3 class="pieza__codigo">{{ p.codigo }}</h3>
+    <p class="pieza__vehiculo">{{ p.vehiculos }}</p>
+    <a class="boton boton--rojo boton--chico boton--ancho" href="{{ wa('Hola MAZA, quiero cotizar la bobina código ' ~ p.codigo ~ ' (' ~ p.vehiculos ~ ').') }}" target="_blank" rel="noopener">{{ icono('whatsapp', 18) }} Cotizar</a>
+  </div>
+</article>

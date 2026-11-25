@@ -1,0 +1,83 @@
+{% from "_iconos.html" import icono %}
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block titulo %}{{ empresa.nombre }}{% endblock %} | Repuestos para autos japoneses, coreanos y chinos</title>
+<meta name="description" content="Auto Repuestos MAZA: importadora y distribuidora de repuestos automotrices en Cochabamba y Santa Cruz. Bobinas, bujías, filtros, muñones y más. Venta por mayor y al detalle.">
+<link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<header class="cabecera" id="cabecera">
+  <div class="contenedor cabecera__fila">
+    <a href="{{ url_for('inicio') }}" class="cabecera__logo" aria-label="Inicio, Auto Repuestos MAZA">
+      <img src="{{ url_for('static', filename='img/logo-maza.png') }}" alt="Auto Repuestos MAZA" width="131" height="63">
+    </a>
+    <button class="menu-boton" id="menuBoton" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">{{ icono('menu', 28) }}</button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      {% set actual = request.endpoint %}
+      <a href="{{ url_for('inicio') }}" class="{{ 'activo' if actual == 'inicio' }}">Inicio</a>
+      <div class="desplegable" id="desplegable">
+        <button type="button" class="desplegable__boton {{ 'activo' if actual == 'catalogo' }}" id="desplegableBoton" aria-expanded="false" aria-controls="desplegableMenu">
+          Productos <svg class="desplegable__flecha" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="desplegable__menu" id="desplegableMenu">
+          <div class="desplegable__grid">
+            {% for c in categorias %}
+            <a href="{{ url_for('catalogo') }}#{{ c.slug }}" class="desplegable__item">
+              <span class="desplegable__icono">{{ icono(c.icono, 26) }}</span>
+              <span><strong>{{ c.nombre }}</strong><small>{{ 'Piezas destacadas' if c.en_linea else 'Consultar disponibilidad' }}</small></span>
+            </a>
+            {% endfor %}
+          </div>
+          <a href="{{ url_for('catalogo') }}" class="desplegable__pie">Ver todas las piezas {{ icono('flecha', 16) }}</a>
+        </div>
+      </div>
+      <a href="{{ url_for('nosotros') }}" class="{{ 'activo' if actual == 'nosotros' }}">Nosotros</a>
+      <a href="{{ url_for('contacto') }}" class="{{ 'activo' if actual == 'contacto' }}">Contacto</a>
+      <a href="{{ wa('Hola MAZA, quiero cotizar un repuesto.') }}" class="boton boton--rojo boton--chico" target="_blank" rel="noopener">{{ icono('whatsapp', 20) }} Cotizar</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+{% block contenido %}{% endblock %}
+</main>
+
+<footer class="pie">
+  <div class="contenedor pie__grid">
+    <div>
+      <img src="{{ url_for('static', filename='img/logo-maza.png') }}" alt="Auto Repuestos MAZA" class="pie__logo" width="131" height="63">
+      <p class="pie__texto">Importadora y distribuidora especialista en repuestos para autos japoneses, coreanos y chinos. {{ empresa.anios }} años en el mercado boliviano.</p>
+    </div>
+    <div>
+      <h2 class="pie__titulo">Sucursales</h2>
+      {% for s in empresa.sucursales %}
+      <p class="pie__texto"><strong>{{ s.ciudad }}</strong><br>{{ s.direccion }}</p>
+      {% endfor %}
+    </div>
+    <div>
+      <h2 class="pie__titulo">Contacto</h2>
+      <p class="pie__texto">{% for t in empresa.telefonos %}<a href="tel:+591{{ t }}">{{ t }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>
+      <p class="pie__texto">
+        {% for red, url in empresa.redes.items() %}<a href="{{ url }}" target="_blank" rel="noopener">{{ red }}</a>{% if not loop.last %} · {% endif %}{% endfor %}
+      </p>
+      <a href="{{ wa('Hola MAZA, quiero cotizar un repuesto.') }}" class="boton boton--rojo boton--chico" target="_blank" rel="noopener">{{ icono('whatsapp', 20) }} Escríbenos</a>
+    </div>
+  </div>
+  <div class="contenedor pie__final">
+    <span>© {{ 2026 }} {{ empresa.nombre }}. Todos los derechos reservados.</span>
+    <span>{{ empresa.lema }}</span>
+  </div>
+</footer>
+
+<a href="{{ wa('Hola MAZA, quiero cotizar un repuesto.') }}" class="wa-flotante" target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp">{{ icono('whatsapp', 30) }}</a>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
